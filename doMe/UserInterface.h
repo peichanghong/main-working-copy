@@ -18,15 +18,14 @@ private:
     string _textFileName;
     char buffer[255];
 
+    //helper
+    void printDisplayList(vector<string> displayList); //helper
+    string getTaskString(Task* task, int viewType); //helper
     void showToUser(string string); //core helper
 public:
     UserInterface(void);
     UserInterface(string textFileName, int defaultViewType);
     ~UserInterface(void);
-
-    //doing
-    void printSearchList(list<Task*>* taskList, string searchTerm);//thinking on how to implement 
-    void printPromptHelp();
 
     //prompts
     void printPromptFirstTimeUser(); //complete
@@ -35,13 +34,15 @@ public:
 
     //notification
     void printNotificationWelcome(); //complete
-    void printNotificationAdd(Task* task); //have extra space at the back
+    void printPromptHelp(); //complete
+    void printNotificationAdd(Task* task); 
     void printNotificationDelete(Task* task); //complete
     void printNotificationClear(); //complete
     void printNotificationViewTypeChange(int newViewType);
     void printNotificationEmpty();
     void printNotificationChangeSaveFileDirectory(string newDirectory); //complete
     void printNotificationEmptySaveFileDirectory();  //complete
+    void printNotificationSearchTerm(string searchTerm);
     void printNotificationClearSearch(string searchTerm);
 
     //error
@@ -51,12 +52,10 @@ public:
     void printNotificationInvalidSaveFileDirectory(); //complete
 
     //main printing
-    void printTaskList(list<Task*> *taskList, int currentDate ,int viewType);  //complete view all task not refactored
-    
+    void printTaskList(list<Task*> *taskList, int currentDate ,int viewType);
+    void printSearchList(list<Task*>* taskList, string searchTerm);
 
-    //helper
-    void printDisplayList(vector<string> displayList); //helper
-    string getTaskString(Task* task, int viewType); 
-    void printNotificationSearchTerm(string searchTerm); //helper
+
+    
 };
 
