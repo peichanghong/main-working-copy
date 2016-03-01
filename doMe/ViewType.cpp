@@ -6,7 +6,7 @@ const string ViewType::MESSAGE_TIMING_SEPERATOR = "- ";
 const string ViewType::MESSAGE_VOID_STRING = "";
 const string ViewType::MESSAGE_SPACE_STRING = " ";
 const string ViewType::MESSAGE_BRACKETS = "(%s)";
-const string ViewType::MESSAGE_FLOATING_TASK = "<No deadlines> ";
+const string ViewType::MESSAGE_FLOATING_TASK = "<No deadline> ";
 
 
 ViewType::ViewType(void) {

@@ -35,13 +35,16 @@ public:
 	Settings(void);
 	~Settings(void);
 
+    //incomplete
+    void changeSaveDirectory(string directory); 
+
+    //complete
 	void updateTextFileName(string textFileName);
-	void changeSaveDirectory(string directory);
 	bool checkForSettingsFile();
-	string getSaveDirectory(); //getter function to pass to storage
-	void loadSettings(); // complete
-	void saveSettings(); // complete
-	bool checkEmptySaveDirectory(); // complete
+	string getSaveDirectory(); 
+	void loadSettings(); 
+	void saveSettings(); 
+	bool checkEmptySaveDirectory(); 
     int getViewType();
     void changeViewType(int newViewType);
 };
