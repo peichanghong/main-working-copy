@@ -13,7 +13,7 @@ public:
         string actualTexFileName;
         string expectedTextFileName = "text.txt";
 
-        actualTexFileName = Settings.createTextFileNameString(input);
+        actualTexFileName = Settings.createValidTextFileNameString(input);
         Settings.updateTextFileName(input);
 
         Assert::AreEqual(expectedTextFileName,actualTexFileName);
@@ -23,14 +23,16 @@ public:
     TEST_METHOD(SettingsChangeDirectoryTest) {
         Settings Settings;
         string input = "C:/Users/PeiChangHong/Documents/NUS Modules 14 I 15/Semester 4/CS2103/Core";
+        string inputName = "mytextfile";
         string actualTexFileName;
         string expectedTextFileName = "mytextfile.txt";
         string expectedDirectory = "C:/Users/PeiChangHong/Documents/NUS Modules 14 I 15/Semester 4/CS2103/Core/";
 
         Assert::AreEqual(true,Settings.checkValidityOfDirectory(input));
 
-        string input2 = "C:/Users/PeiChangHong/Documents/NUS Modules 14 I 15/Semester 4/CS2103/Core/mytextfile.txt";
-        Settings.changeSaveDirectory(input2);
+        Settings.changeSaveDirectory(input);
+        Settings.updateTextFileName(inputName);
+
         Assert::AreEqual(expectedTextFileName, Settings._textFileName);
         Assert::AreEqual(expectedDirectory, Settings._saveDirectory);
 
