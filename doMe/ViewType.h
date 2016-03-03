@@ -31,9 +31,9 @@ public:
     static const string MESSAGE_FLOATING_TASK;
     static const string MESSAGE_DISPLAY_HEADER;
     static const string MESSAGE_NEW_LINE;
+    static const string MESSAGE_EMPTY_LIST;
 
     string createTaskString(Task* individualTask, int index);
-    //virtual string createTaskString(Task* individualTask, int index);
     virtual string getComplimentaryString(Task* individualTask);
 
     virtual string getTimeTaskString(int time);
@@ -56,7 +56,8 @@ public:
     ViewType(list<Task*> *taskList, int currentDate);
     ~ViewType(void);
 
-    vector<string> createDisplayList();
+    virtual vector<string> createDisplayList();
+    //vector<string> createDisplayList();
     vector<string> createSearchList();
     string getTaskString(Task* individualTask);
 };

@@ -1,5 +1,6 @@
 #include "UserInterface.h"
 const string UserInterface::DEFAULT_TEXT_FILE_NAME = "doMe.txt";
+const string UserInterface::MESSAGE_BOX = "======================================================================";
 
 const string UserInterface::MESSAGE_FIRST_TIME = "This is your first time using this programme.";
 const string UserInterface::MESSAGE_SAVE_FILE_NAME = "Input your save file name: ";
@@ -34,6 +35,7 @@ const string UserInterface::MESSAGE_HELP_TIPS[] = {
     "undo",
     "exit"
 }; 
+
 
 UserInterface::UserInterface(void) {
     _textFileName = DEFAULT_TEXT_FILE_NAME;
@@ -78,70 +80,70 @@ void UserInterface::printPromptHelp() {
 /****************************************************************/
 
 void UserInterface::printNotificationWelcome() {
-    showToUser(MESSAGE_WELCOME);
+    showToUserWithMessage(MESSAGE_WELCOME);
 }
 
 void UserInterface::printNotificationAdd(Task* task) {
     string taskString;
     taskString = getTaskString(task,_defaultViewType);
     sprintf_s(buffer, MESSAGE_ADD.c_str(),taskString.c_str(), _textFileName.c_str());
-    showToUser(buffer);
+    showToUserWithMessage(buffer);
 }
 
 void UserInterface::printNotificationDelete(Task* task) {
     string taskString;
     taskString = getTaskString(task,_defaultViewType);
     sprintf_s(buffer, MESSAGE_DELETE.c_str(),taskString.c_str(), _textFileName.c_str());
-    showToUser(buffer);
+    showToUserWithMessage(buffer);
 }
 
 void UserInterface::printNotificationClear() {
     sprintf_s(buffer, MESSAGE_CLEAR.c_str(), _textFileName.c_str());
-    showToUser(buffer);
+    showToUserWithMessage(buffer);
 }
 
 void UserInterface::printNotificationViewTypeChange(int newViewType) {
     sprintf_s(buffer, MESSAGE_VIEW_TYPE.c_str(), newViewType);
-    showToUser(buffer);
+    showToUserWithMessage(buffer);
 }
 
 void UserInterface::printNotificationClearSearch(string searchTerm) {
     sprintf_s(buffer, MESSAGE_CLEAR_SEARCH.c_str(), searchTerm.c_str());
-    showToUser(buffer);
+    showToUserWithMessage(buffer);
 }
 /****************************************************************/
 
 void UserInterface::printNotificationInvalidAdd() {
-    showToUser(ERROR_INVALID_ADD);
+    showToUserWithMessage(ERROR_INVALID_ADD);
 }
 
 void UserInterface::printNotificationInvalidDeletion() {
-    showToUser(ERROR_INVALID_DELETE);
+    showToUserWithMessage(ERROR_INVALID_DELETE);
 }
 
 void UserInterface::printNotificationInvalidCommand() {
-    showToUser(ERROR_INVALID_COMMAND);
+    showToUserWithMessage(ERROR_INVALID_COMMAND);
 }
 
 void UserInterface::printNotificationEmpty() {
     sprintf_s(buffer, MESSAGE_EMPTY.c_str(), _textFileName.c_str());
-    showToUser(buffer);
+    showToUserWithMessage(buffer);
 }
 
 /****************************************************************/
 
 void UserInterface::printNotificationInvalidSaveFileDirectory() {
-    showToUser(ERROR_SET_INVALID_SAVE_FILE_DIRECTORY);
+    showToUserWithMessage(ERROR_SET_INVALID_SAVE_FILE_DIRECTORY);
 }
 
 void UserInterface::printNotificationChangeSaveFileDirectory(string newDirectory) {
     sprintf_s(buffer, MESSAGE_SET_SAVE_FILE_DIRECTORY.c_str(), newDirectory.c_str());
-    showToUser(buffer);
+    showToUserWithMessage(buffer);
 }
 
 void UserInterface::printNotificationEmptySaveFileDirectory() {
     showToUser(MESSAGE_EMPTY_SAVE_FILE_DIRECTORY);
-    showToUser(MESSAGE_TIP_SAVE_FILE_DIRECTORY);
+    showToUserWithMessage(MESSAGE_TIP_SAVE_FILE_DIRECTORY);
 }
 
 /****************************************************************/
@@ -149,7 +151,6 @@ void UserInterface::printNotificationEmptySaveFileDirectory() {
 void UserInterface::printSearchList(list<Task*>* taskList, string searchTerm) {
     printNotificationSearchTerm(searchTerm);
     ViewType *taskListType;
-    if(!(*taskList).empty()) {
 
         switch(_defaultViewType) {
         case -1:
@@ -163,14 +164,13 @@ void UserInterface::printSearchList(list<Task*>* taskList, string searchTerm) {
         }
         printDisplayList(taskListType->createSearchList());
         delete taskListType;
-    } else {
-        cout << "empty" << endl;
-    }
 }
+
+
 
 void UserInterface::printTaskList(list<Task*> *taskList, int currentDate ,int viewType) {
     ViewType *taskListType;
-    if(!(taskList->empty())) {
+
         switch(viewType) {
         case -1:
             taskListType = new ViewType(taskList , currentDate);
@@ -178,14 +178,14 @@ void UserInterface::printTaskList(list<Task*> *taskList, int currentDate ,int vi
         case 0:
             taskListType = new ViewType0(taskList , currentDate);
             break;
+        case 1:
+            taskListType = new ViewType1(taskList , currentDate);
+            break;
         default:
             break;
         }
         printDisplayList(taskListType->createDisplayList());
         delete taskListType;
-    } else {
-        cout << "empty" << endl;
-    }
 }
 
 /****************************************************************/
@@ -218,9 +218,18 @@ void UserInterface::printDisplayList(vector<string> displayList) {
 
 void UserInterface::printNotificationSearchTerm(string searchTerm) {
     sprintf_s(buffer, MESSAGE_SEARCH.c_str(), searchTerm.c_str());
-    showToUser(buffer);
+    showToUserWithMessage(buffer);
 }
 
 void UserInterface::showToUser(string string) {
     cout << string << endl;
+}
+
+void UserInterface::showToUserWithMessage(string string) {
+    if(_defaultViewType == 1) {
+        showToUser(string);
+        showToUser(MESSAGE_BOX);
+    } else {
+    showToUser(string);
+    }
 }

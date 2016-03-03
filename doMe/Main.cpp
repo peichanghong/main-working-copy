@@ -2,9 +2,11 @@
 #include "Settings.h"
 #include "UserInterface.h"
 
+const string MESSAGE_BOX = "======================================================================";
+
 int main() {
     UserInterface UI;
-    UserInterface UI2("UI2.txt", 0);
+    UserInterface UI2("UI2.txt", 1);
     string actualString;
     list<Task*> vec;
     string s;
@@ -16,13 +18,19 @@ int main() {
     vec.push_back(new Task("read book" , -1 , 20161023 , 100 , 200 , ""));
     vec.push_back(new Task("read book" , -1 , -1 , -1 , -1 , "college"));
     
-    UI.printTaskList(&vec, 20160821 ,0);
-    cout << endl << endl;
+    UI2.printTaskList(&vec, 20160821 ,1);
 
-    UI.printSearchList(&vec, "search me"); 
-    cout << endl << endl;
+    UI2.printNotificationWelcome();
+    
+    UI2.printPromptCommand();
+    cin >> s ;
 
-    cout << UI.getTaskString(*vec.begin() , UI._defaultViewType);
+    //cout << endl << endl;
+
+    //UI.printSearchList(&vec, "search me"); 
+    //cout << endl << endl;
+
+   // cout << UI.getTaskString(*vec.begin() , UI._defaultViewType);
 
     /*
     UI.printNotificationAdd(new Task("read book" , 0 , 20160821 , 0 , 1300 , "home"));
