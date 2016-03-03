@@ -93,22 +93,22 @@ public:
             "read book (college) <No deadline>"
         };
 
-        ls.push_back(new Task("read book" , 0 , 20160821 , 0 , 1300 , "home"));
+        ls.push_back(new Task("read book" , -1 , 20160821 , -1 , 1300 , "home"));
         ls.push_back(new Task("read book" , 20160819 , 20160821 , 1300 , 1600 , "home"));
-        ls.push_back(new Task("read book" , 0 , 20160921 , 0 , 0 , "home"));
-        ls.push_back(new Task("read book" , 0 , 20160922 , 100 , 200 , "college"));
-        ls.push_back(new Task("read book" , 0 , 20161023 , 100 , 200 , ""));
-        ls.push_back(new Task("read book" , 0 , 0 , 0 , 0 , "college"));
+        ls.push_back(new Task("read book" , -1 , 20160921 , -1 , -1 , "home"));
+        ls.push_back(new Task("read book" , -1 , 20160922 , 100 , 200 , "college"));
+        ls.push_back(new Task("read book" , -1 , 20161023 , 100 , 200 , ""));
+        ls.push_back(new Task("read book" , -1 , -1 , -1 , -1 , "college"));
 
         list<Task*>::iterator listIter = ls.begin();
 
         while(listIter != ls.end()) {
-            actualString = UI.getTaskString(*listIter , UI._defaultViewType);
-            Assert::AreEqual(expectedString[i], actualString);
-            i++;
-            listIter++;
+        actualString = UI.getTaskString(*listIter , UI._defaultViewType);
+        Assert::AreEqual(expectedString[i], actualString);
+        i++;
+        listIter++;
         }
-
+        
     }
 
     TEST_METHOD(UIGetTaskStringType0) {
@@ -126,12 +126,12 @@ public:
             "read book (college) <No deadline>"
         };
 
-        ls.push_back(new Task("read book" , 0 , 20160821 , 0 , 1300 , "home"));
+        ls.push_back(new Task("read book" , -1 , 20160821 , -1 , 1300 , "home"));
         ls.push_back(new Task("read book" , 20160819 , 20160821 , 1300 , 1600 , "home"));
-        ls.push_back(new Task("read book" , 0 , 20160921 , 0 , 0 , "home"));
-        ls.push_back(new Task("read book" , 0 , 20160922 , 100 , 200 , "college"));
-        ls.push_back(new Task("read book" , 0 , 20161023 , 100 , 200 , ""));
-        ls.push_back(new Task("read book" , 0 , 0 , 0 , 0 , "college"));
+        ls.push_back(new Task("read book" , -1 , 20160921 , -1 , -1 , "home"));
+        ls.push_back(new Task("read book" , -1 , 20160922 , 100 , 200 , "college"));
+        ls.push_back(new Task("read book" , -1 , 20161023 , 100 , 200 , ""));
+        ls.push_back(new Task("read book" , -1 , -1 , -1 , -1 , "college"));
 
         list<Task*>::iterator listIter = ls.begin();
 
@@ -165,12 +165,12 @@ public:
             "6. read book (college) <No deadline>"
         };
 
-        ls.push_back(new Task("read book" , 0 , 20160821 , 0 , 1300 , "home"));
+        ls.push_back(new Task("read book" , -1 , 20160821 , -1 , 1300 , "home"));
         ls.push_back(new Task("read book" , 20160819 , 20160821 , 1300 , 1600 , "home"));
-        ls.push_back(new Task("read book" , 0 , 20160921 , 0 , 0 , "home"));
-        ls.push_back(new Task("read book" , 0 , 20160922 , 100 , 200 , "college"));
-        ls.push_back(new Task("read book" , 0 , 20161023 , 100 , 200 , ""));
-        ls.push_back(new Task("read book" , 0 , 0 , 0 , 0 , "college"));
+        ls.push_back(new Task("read book" , -1 , 20160921 , -1 , -1 , "home"));
+        ls.push_back(new Task("read book" , -1 , 20160922 , 100 , 200 , "college"));
+        ls.push_back(new Task("read book" , -1 , 20161023 , 100 , 200 , ""));
+        ls.push_back(new Task("read book" , -1 , -1 , -1 , -1 , "college"));
         testView._taskList = &ls;
 
         actualDisplayList = testView.createDisplayList();
@@ -199,12 +199,12 @@ public:
             "6. read book (college) <No deadline>"
         };
 
-        ls.push_back(new Task("read book" , 0 , 20160821 , 0 , 1300 , "home"));
+        ls.push_back(new Task("read book" , -1 , 20160821 , -1 , 1300 , "home"));
         ls.push_back(new Task("read book" , 20160819 , 20160821 , 1300 , 1600 , "home"));
-        ls.push_back(new Task("read book" , 0 , 20160921 , 0 , 0 , "home"));
-        ls.push_back(new Task("read book" , 0 , 20160922 , 100 , 200 , "college"));
-        ls.push_back(new Task("read book" , 0 , 20161023 , 100 , 200 , ""));
-        ls.push_back(new Task("read book" , 0 , 0 , 0 , 0 , "college"));
+        ls.push_back(new Task("read book" , -1 , 20160921 , -1 , -1 , "home"));
+        ls.push_back(new Task("read book" , -1 , 20160922 , 100 , 200 , "college"));
+        ls.push_back(new Task("read book" , -1 , 20161023 , 100 , 200 , ""));
+        ls.push_back(new Task("read book" , -1 , -1 , -1 , -1 , "college"));
         testView._taskList = &ls;
 
         actualDisplayList = testView.createSearchList();
@@ -236,12 +236,12 @@ public:
             "6. read book (college) <No deadline>"
         };
 
-        ls.push_back(new Task("read book" , 0 , 20160821 , 0 , 1300 , "home"));
+        ls.push_back(new Task("read book" , -1 , 20160821 , -1 , 1300 , "home"));
         ls.push_back(new Task("read book" , 20160819 , 20160821 , 1300 , 1600 , "home"));
-        ls.push_back(new Task("read book" , 0 , 20160921 , 0 , 0 , "home"));
-        ls.push_back(new Task("read book" , 0 , 20160922 , 100 , 200 , "college"));
-        ls.push_back(new Task("read book" , 0 , 20161023 , 100 , 200 , ""));
-        ls.push_back(new Task("read book" , 0 , 0 , 0 , 0 , "college"));
+        ls.push_back(new Task("read book" , -1 , 20160921 , -1 , -1 , "home"));
+        ls.push_back(new Task("read book" , -1 , 20160922 , 100 , 200 , "college"));
+        ls.push_back(new Task("read book" , -1 , 20161023 , 100 , 200 , ""));
+        ls.push_back(new Task("read book" , -1 , -1 , -1 , -1 , "college"));
 
         testView = new ViewType0(&ls , 20160821); //initiate marker = 0
 
@@ -271,12 +271,12 @@ public:
             "6. read book (college) <No deadline>"
         };
 
-        ls.push_back(new Task("read book" , 0 , 20160821 , 0 , 1300 , "home"));
+        ls.push_back(new Task("read book" , -1 , 20160821 , -1 , 1300 , "home"));
         ls.push_back(new Task("read book" , 20160819 , 20160821 , 1300 , 1600 , "home"));
-        ls.push_back(new Task("read book" , 0 , 20160921 , 0 , 0 , "home"));
-        ls.push_back(new Task("read book" , 0 , 20160922 , 100 , 200 , "college"));
-        ls.push_back(new Task("read book" , 0 , 20161023 , 100 , 200 , ""));
-        ls.push_back(new Task("read book" , 0 , 0 , 0 , 0 , "college"));
+        ls.push_back(new Task("read book" , -1 , 20160921 , -1 , -1 , "home"));
+        ls.push_back(new Task("read book" , -1 , 20160922 , 100 , 200 , "college"));
+        ls.push_back(new Task("read book" , -1 , 20161023 , 100 , 200 , ""));
+        ls.push_back(new Task("read book" , -1 , -1 , -1 , -1 , "college"));
         testView._taskList = &ls;
 
         actualDisplayList = testView.createSearchList();
