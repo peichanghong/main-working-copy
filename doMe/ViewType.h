@@ -32,7 +32,8 @@ public:
     static const string MESSAGE_DISPLAY_HEADER;
     static const string MESSAGE_NEW_LINE;
 
-    virtual string createTaskString(Task* individualTask, int index);
+    string createTaskString(Task* individualTask, int index);
+    //virtual string createTaskString(Task* individualTask, int index);
     virtual string getComplimentaryString(Task* individualTask);
 
     virtual string getTimeTaskString(int time);
@@ -42,7 +43,7 @@ public:
     string getMonth(int date);
     string getYear(int date);
     string integerToString(int integer);
-    string timeToString(int time);
+    string timeToString(string time);
 
     string formatTaskString(string name , string date1 , string date2 , string time1 , string time2 , string location);
     string formateDateString(string s1, string s2);

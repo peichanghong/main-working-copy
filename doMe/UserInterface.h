@@ -53,7 +53,8 @@ public:
     //helper
     void showToUser(string string);
     void printDisplayList(vector<string> displayList); 
-    string getTaskString(Task* task, int viewType); //incomplete   
+    string getTaskString(Task* task, int viewType); //incomplete
+    
 public:
     UserInterface(void);
     UserInterface(string textFileName, int defaultViewType);

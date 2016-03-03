@@ -26,10 +26,15 @@ ViewType::~ViewType(void) {
 }
 
 vector<string> ViewType::createDisplayList() {
-    list<Task*>::iterator taskListIter = (*_taskList).begin();
+    list<Task*>::iterator taskListIter = ((*_taskList).begin());
+    string complimentaryString;
     int index = 1;
 
     while(taskListIter != (*_taskList).end()) {
+        complimentaryString = getComplimentaryString(*taskListIter);
+        if(complimentaryString != MESSAGE_VOID_STRING) {
+            _displayList.push_back(complimentaryString);
+        }
         _displayList.push_back(createTaskString(*taskListIter,index));
         index++;
         taskListIter++;
@@ -144,7 +149,8 @@ string ViewType::getTimeTaskString(int time) {
     string timeString;
 
     if(time >= 0) {
-        timeString = timeToString(time);
+        timeString = integerToString(time);
+        timeString = timeToString(timeString);
 
         timeString.insert(timeString.size() - 2,MESSAGE_TIME_SEPERATOR);
 
@@ -160,16 +166,12 @@ string ViewType::integerToString(int integer) {
     return oss.str();
 }
 
-string ViewType::timeToString(int time) {
-    ostringstream oss;
-    string timeString;
-    oss << time;
-    timeString = oss.str();
-
-    if(time < 100) {
+string ViewType::timeToString(string time) {
+    string timeString = time;
+    if(time.size() < 3) {
         timeString.insert(0,"0");
     }
-    if(time < 10) {
+    if(time.size()  < 2) {
         timeString.insert(0,"0");
     }
     return timeString;
