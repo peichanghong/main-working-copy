@@ -4,8 +4,10 @@ const string ViewType1::MESSAGE_NEW_LINE = "\n";
 const string ViewType1::MESSAGE_AM = " am";
 const string ViewType1::MESSAGE_PM = " pm";
 const int ViewType1::TIME_MIDDAY = 1200;
-const string MESSAGE_BOX = "======================================================================";
-const int BOX_LENGTH = 21; 
+const string ViewType1::MESSAGE_BOX = "======================================================================";
+const char ViewType1::MESSAGE_BOX_CHARACTER = '=';
+int ViewType1::WINDOWS_WIDTH = 80;
+int ViewType1::WINDOWS_LENGTH = 40; 
 
 
 ViewType1::ViewType1(void) {
@@ -71,17 +73,22 @@ string ViewType1::getTimeTaskString(int time) {
 
 vector<string> ViewType1::createDisplayBox(vector<string> displayList) {
     vector<string>::iterator displayListIter;
+    string messageBox;
 
-    displayList.insert(displayList.begin(),MESSAGE_BOX);
+    setWindowsRowsColumns();
+    messageBox.assign(WINDOWS_WIDTH,MESSAGE_BOX_CHARACTER);
+    messageBox.pop_back();
+
+    displayList.insert(displayList.begin(),messageBox);
     displayList.insert(displayList.begin(),MESSAGE_VOID_STRING);
     displayListIter = displayList.begin();
     displayListIter++;
 
-    while(displayList.size() != BOX_LENGTH) {
+    while(displayList.size() != WINDOWS_LENGTH) {
         displayList.push_back("");
     }
 
-    displayList.insert(displayList.end(),MESSAGE_BOX);
+    displayList.insert(displayList.end(),messageBox);
     return displayList;
 }
 
@@ -109,3 +116,16 @@ vector<string> ViewType1::createDisplayList() {
     return _displayList;
 }
 
+void ViewType1::setWindowsRowsColumns() {
+    //system("mode CON: COLS=120 lines=40");
+    CONSOLE_SCREEN_BUFFER_INFO csbi;
+    int columns;
+    int rows;
+
+    GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &csbi);
+    columns = csbi.srWindow.Right - csbi.srWindow.Left + 1;
+    rows = csbi.srWindow.Bottom - csbi.srWindow.Top + 1;
+
+    WINDOWS_WIDTH = columns;
+    WINDOWS_LENGTH = rows - 4; 
+}

@@ -1,6 +1,9 @@
 #include "UserInterface.h"
 const string UserInterface::DEFAULT_TEXT_FILE_NAME = "doMe.txt";
-const string UserInterface::MESSAGE_BOX = "======================================================================";
+string UserInterface::MESSAGE_BOX = "======================================================================";
+const char UserInterface::MESSAGE_BOX_CHARACTER = '=';
+int UserInterface::WINDOWS_WIDTH = 80;
+int UserInterface::WINDOWS_LENGTH = 40; 
 
 const string UserInterface::MESSAGE_FIRST_TIME = "This is your first time using this programme.";
 const string UserInterface::MESSAGE_SAVE_FILE_NAME = "Input your save file name: ";
@@ -152,18 +155,18 @@ void UserInterface::printSearchList(list<Task*>* taskList, string searchTerm) {
     printNotificationSearchTerm(searchTerm);
     ViewType *taskListType;
 
-        switch(_defaultViewType) {
-        case -1:
-            taskListType = new ViewType(taskList);
-            break;
-        case 0:
-            taskListType = new ViewType0(taskList);
-            break;
-        default:
-            break;
-        }
-        printDisplayList(taskListType->createSearchList());
-        delete taskListType;
+    switch(_defaultViewType) {
+    case -1:
+        taskListType = new ViewType(taskList);
+        break;
+    case 0:
+        taskListType = new ViewType0(taskList);
+        break;
+    default:
+        break;
+    }
+    printDisplayList(taskListType->createSearchList());
+    delete taskListType;
 }
 
 
@@ -171,21 +174,21 @@ void UserInterface::printSearchList(list<Task*>* taskList, string searchTerm) {
 void UserInterface::printTaskList(list<Task*> *taskList, int currentDate ,int viewType) {
     ViewType *taskListType;
 
-        switch(viewType) {
-        case -1:
-            taskListType = new ViewType(taskList , currentDate);
-            break;
-        case 0:
-            taskListType = new ViewType0(taskList , currentDate);
-            break;
-        case 1:
-            taskListType = new ViewType1(taskList , currentDate);
-            break;
-        default:
-            break;
-        }
-        printDisplayList(taskListType->createDisplayList());
-        delete taskListType;
+    switch(viewType) {
+    case -1:
+        taskListType = new ViewType(taskList , currentDate);
+        break;
+    case 0:
+        taskListType = new ViewType0(taskList , currentDate);
+        break;
+    case 1:
+        taskListType = new ViewType1(taskList , currentDate);
+        break;
+    default:
+        break;
+    }
+    printDisplayList(taskListType->createDisplayList());
+    delete taskListType;
 }
 
 /****************************************************************/
@@ -221,15 +224,34 @@ void UserInterface::printNotificationSearchTerm(string searchTerm) {
     showToUserWithMessage(buffer);
 }
 
-void UserInterface::showToUser(string string) {
-    cout << string << endl;
+void UserInterface::showToUser(string message) {
+    cout << message << endl;
 }
 
-void UserInterface::showToUserWithMessage(string string) {
+void UserInterface::showToUserWithMessage(string message) {
     if(_defaultViewType == 1) {
-        showToUser(string);
-        showToUser(MESSAGE_BOX);
+        string messageBox;
+        setWindowsRowsColumns();
+        messageBox.assign(WINDOWS_WIDTH,MESSAGE_BOX_CHARACTER);
+        messageBox.pop_back();
+
+        showToUser(message);
+        showToUser(messageBox);
     } else {
-    showToUser(string);
+        showToUser(message);
     }
+}
+
+void UserInterface::setWindowsRowsColumns() {
+    //system("mode CON: COLS=120 lines=40");
+    CONSOLE_SCREEN_BUFFER_INFO csbi;
+    int columns;
+    int rows;
+
+    GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &csbi);
+    columns = csbi.srWindow.Right - csbi.srWindow.Left + 1;
+    rows = csbi.srWindow.Bottom - csbi.srWindow.Top + 1;
+
+    WINDOWS_WIDTH = columns;
+    WINDOWS_LENGTH = rows - 4; 
 }

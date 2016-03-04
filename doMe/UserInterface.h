@@ -25,7 +25,10 @@ public:
     char buffer[255];
 
     static const string DEFAULT_TEXT_FILE_NAME;
-    static const string MESSAGE_BOX;
+    static const char MESSAGE_BOX_CHARACTER;
+    static string MESSAGE_BOX;
+    static int WINDOWS_WIDTH;
+    static int WINDOWS_LENGTH;
 
     static const string MESSAGE_FIRST_TIME;
     static const string MESSAGE_SAVE_FILE_NAME;
@@ -53,8 +56,9 @@ public:
     static const string MESSAGE_HELP_TIPS[];
 
     //helper
-    void showToUser(string string);
-    void showToUserWithMessage(string string); //special sperator
+    void showToUser(string message);
+    void showToUserWithMessage(string message); //special sperator
+    void setWindowsRowsColumns();
     void printDisplayList(vector<string> displayList); 
     string getTaskString(Task* task, int viewType); //incomplete
     
