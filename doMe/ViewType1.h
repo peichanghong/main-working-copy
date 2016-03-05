@@ -1,5 +1,4 @@
 #pragma once
-#include <windows.h>
 #include "ViewType.h"
 #include "ViewType0.h"
 
@@ -13,13 +12,10 @@ private:
     static const string MESSAGE_PM;
     static const int TIME_MIDDAY;
     static const string MESSAGE_BOX;
-    static const char MESSAGE_BOX_CHARACTER;
-    static int WINDOWS_WIDTH;
-    static int WINDOWS_LENGTH; 
-
+    static const int BOX_LENGTH; 
     string getComplimentaryString(Task* individualTask);
     string getTimeTaskString(int time);
-    void setWindowsRowsColumns();
+
 public:
     ViewType1(void);
     ViewType1(list<Task*> *taskList);

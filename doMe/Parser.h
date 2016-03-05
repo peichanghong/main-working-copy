@@ -34,10 +34,10 @@ public:
 	Parser(string commandLine = ""); // string to parse can be put in directly during construction
 	~Parser(void);
 	
-	CommandPackage parse(); // run this method to parse a commandline and recieve the command package
+	CommandPackage* parse(); // run this method to parse a commandline and recieve the command package
 	
 	void setCommandLine(string commandLine); // command line to parse can be set using this method as well
-	CommandPackage getCommandPackage(); // this method can be used to recieve the commandpackage after parsing
+	CommandPackage* getCommandPackage(); // this method can be used to recieve the commandpackage after parsing
 
 	//all attributes and methods below are for internal implementations, do not touch
 private:
@@ -46,7 +46,15 @@ private:
 	vector<string> _commandParameters;
 	COMMAND_TYPE _commandType;
 	CommandPackage _commandPackage;
-		
+	vector<int> _times;
+	int _time1;
+	int _time2;
+	vector<int> _dates;
+	int _date2;
+	int _date1;
+	vector<string> _location;
+	vector<string> _description;
+
 	static const int COMMAND_POSITION = 0;
 	static const int INDEX_POSITION = 1;
 	static const int FIRST_PARAMETER_POSITION = 1;
@@ -56,6 +64,7 @@ public:
 	void guessCommandType();
 	void findDetailsIfSimpleCommandType();
 	void findDetailsIfNotSimpleCommandType();
+	void parseAsAddCommandIfStillNotParsed();
 
 	bool isAdd(string s);
 	bool isDisplay(string s);
@@ -77,7 +86,27 @@ public:
 	void packCommandIfConfirmedSavedDirectoryCommand();
 	void packCommandIfConfirmedExitCommand();
 
+	void packCommandIfConfirmedEditCommand();
+	void packEditCommand();
+	void packCommandIfConfirmedClearCommand();
+	void packCommandIfConfirmedSearchCommand();
+	void packCommandIfConfirmedViewTypeCommand();
+	void packAddCommand();
+	void removeAddCommand();
+	void removeEditCommand();
+	void getDateAndTimeParameters();
+	void getLocationParameter();
+	void getDescriptionParameter();
+
+	bool finalizeDates();
+	bool finalizeTimes();
+
 	vector<string> splitSentence(string commandLine);
+	string combineWords(vector<string> stringVector);
 	string makeAllCaps(string s);
+	
 	bool isInteger(string s);
+	bool isTime(int n);
+	bool isDate(int n);
+	bool hasLocationMarker(string s);
 };

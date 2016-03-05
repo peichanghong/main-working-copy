@@ -1,7 +1,7 @@
 #include "UserInterface.h"
 const string UserInterface::DEFAULT_TEXT_FILE_NAME = "doMe.txt";
-string UserInterface::MESSAGE_BOX = "======================================================================";
 const char UserInterface::MESSAGE_BOX_CHARACTER = '=';
+const string UserInterface::MESSAGE_VOID_STRING = "";
 int UserInterface::WINDOWS_WIDTH = 80;
 int UserInterface::WINDOWS_LENGTH = 40; 
 
@@ -165,7 +165,7 @@ void UserInterface::printSearchList(list<Task*>* taskList, string searchTerm) {
     default:
         break;
     }
-    printDisplayList(taskListType->createSearchList());
+    printDisplayList(createDisplayBox(taskListType->createDisplayList()));
     delete taskListType;
 }
 
@@ -187,7 +187,7 @@ void UserInterface::printTaskList(list<Task*> *taskList, int currentDate ,int vi
     default:
         break;
     }
-    printDisplayList(taskListType->createDisplayList());
+    printDisplayList(createDisplayBox(taskListType->createDisplayList()));
     delete taskListType;
 }
 
@@ -210,6 +210,16 @@ string UserInterface::getTaskString(Task* task, int viewType) {
     return taskListType->getTaskString(task);
 }
 
+void UserInterface::updateTextFileName(string textFileName) {
+    _textFileName = textFileName;
+}
+
+void UserInterface::changeViewType(int newViewType) {
+    _defaultViewType = newViewType;
+}
+
+/****************************************************************/
+
 void UserInterface::printDisplayList(vector<string> displayList) {
     vector<string>::iterator displayListIter = displayList.begin();
 
@@ -229,7 +239,7 @@ void UserInterface::showToUser(string message) {
 }
 
 void UserInterface::showToUserWithMessage(string message) {
-    if(_defaultViewType == 1) {
+    //if(_defaultViewType == 1) {
         string messageBox;
         setWindowsRowsColumns();
         messageBox.assign(WINDOWS_WIDTH,MESSAGE_BOX_CHARACTER);
@@ -237,9 +247,11 @@ void UserInterface::showToUserWithMessage(string message) {
 
         showToUser(message);
         showToUser(messageBox);
+        /*
     } else {
         showToUser(message);
     }
+    */
 }
 
 void UserInterface::setWindowsRowsColumns() {
@@ -254,4 +266,25 @@ void UserInterface::setWindowsRowsColumns() {
 
     WINDOWS_WIDTH = columns;
     WINDOWS_LENGTH = rows - 4; 
+}
+
+vector<string> UserInterface::createDisplayBox(vector<string> &displayList) {
+    vector<string>::iterator displayListIter;
+    string messageBox;
+
+    setWindowsRowsColumns();
+    messageBox.assign(WINDOWS_WIDTH,MESSAGE_BOX_CHARACTER);
+    messageBox.pop_back();
+
+    displayList.insert(displayList.begin(),messageBox);
+    displayList.insert(displayList.begin(),MESSAGE_VOID_STRING);
+    displayListIter = displayList.begin();
+    displayListIter++;
+
+    while(displayList.size() != WINDOWS_LENGTH) {
+        displayList.push_back(MESSAGE_VOID_STRING);
+    }
+
+    displayList.insert(displayList.end(),messageBox);
+    return displayList;
 }

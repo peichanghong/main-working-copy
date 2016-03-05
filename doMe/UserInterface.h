@@ -5,6 +5,7 @@
 #include <sstream>
 #include <vector>
 #include <list>
+#include <windows.h>
 
 #include "Task.h"
 #include "ViewType.h"
@@ -26,7 +27,7 @@ public:
 
     static const string DEFAULT_TEXT_FILE_NAME;
     static const char MESSAGE_BOX_CHARACTER;
-    static string MESSAGE_BOX;
+    static const string MESSAGE_VOID_STRING; 
     static int WINDOWS_WIDTH;
     static int WINDOWS_LENGTH;
 
@@ -59,13 +60,18 @@ public:
     void showToUser(string message);
     void showToUserWithMessage(string message); //special sperator
     void setWindowsRowsColumns();
+    vector<string> createDisplayBox(vector<string> &displayList);
     void printDisplayList(vector<string> displayList); 
     string getTaskString(Task* task, int viewType); //incomplete
-    
+
 public:
     UserInterface(void);
     UserInterface(string textFileName, int defaultViewType);
     ~UserInterface(void);
+
+    //getter
+    void updateTextFileName(string textFileName);
+    void changeViewType(int newViewType);
 
     //prompts
     void printPromptFirstTimeUser(); 

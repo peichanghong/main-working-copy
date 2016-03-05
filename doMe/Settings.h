@@ -16,7 +16,8 @@ private:
 public: 
 #endif
 
-	static const string FILE_NAME_SETTINGS;
+	static const string FILE_SETTINGS_NAME;
+    static const string DEFAULT_TEXT_FILE_NAME;
 	static const string VOID_INDICATOR;
 	static const string VOID_STRING;
 
@@ -42,6 +43,7 @@ public:
     bool checkEmptySaveDirectory(); 
 	bool checkForSettingsFile();
 	string getSaveDirectory();
+    string getTextFileName();
     int getViewType();
     void changeViewType(int newViewType);
 	void loadSettings(); 

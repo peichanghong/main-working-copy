@@ -13,6 +13,12 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Command Classes">
+      <UniqueIdentifier>{98a7eee8-7e70-431a-974b-5eb2dc0f603c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ViewType Classes">
+      <UniqueIdentifier>{35e51aab-dfac-4c56-bdc3-8abfd983e7c6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -39,14 +45,34 @@
     <ClCompile Include="Parser.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Command.cpp">
+      <Filter>Command Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Command_Add.cpp">
+      <Filter>Command Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Command_Delete.cpp">
+      <Filter>Command Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Command_Edit.cpp">
+      <Filter>Command Classes</Filter>
+    </ClCompile>
+<<<<<<< HEAD
+    <ClCompile Include="ViewType1.cpp">
+      <Filter>ViewType Classes</Filter>
+    </ClCompile>
     <ClCompile Include="ViewType.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>ViewType Classes</Filter>
     </ClCompile>
     <ClCompile Include="ViewType0.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>ViewType Classes</Filter>
+=======
+    <ClCompile Include="Command_Clear.cpp">
+      <Filter>Command Classes</Filter>
     </ClCompile>
-    <ClCompile Include="ViewType1.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Command_ViewType.cpp">
+      <Filter>Command Classes</Filter>
+>>>>>>> d284688e74b07befce621ba279194148d736a51b
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -79,6 +105,24 @@
     </ClInclude>
     <ClInclude Include="ViewType1.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Command.h">
+      <Filter>Command Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Command_Add.h">
+      <Filter>Command Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Command_Delete.h">
+      <Filter>Command Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Command_Edit.h">
+      <Filter>Command Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Command_Clear.h">
+      <Filter>Command Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Command_ViewType.h">
+      <Filter>Command Classes</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

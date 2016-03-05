@@ -7,6 +7,14 @@ using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 namespace UnitTest {		
     TEST_CLASS(SettingTest) {
 public:
+	/*
+	TEST_METHOD(ParserTest) {
+		CommandPackage expectedAddObject(ADD, Task("fly a plane",0,11092001,-1,-1),0,"");
+		Parser sut("fly a plane 11092001");
+
+		Assert::AreEqual(sut.parse(),&expectedAddObject);
+	}
+	*/
     TEST_METHOD(SettingsTextFileNameMakerTest) {
         Settings Settings;
         string input = "text";
@@ -103,12 +111,12 @@ public:
         list<Task*>::iterator listIter = ls.begin();
 
         while(listIter != ls.end()) {
-        actualString = UI.getTaskString(*listIter , UI._defaultViewType);
-        Assert::AreEqual(expectedString[i], actualString);
-        i++;
-        listIter++;
+            actualString = UI.getTaskString(*listIter , UI._defaultViewType);
+            Assert::AreEqual(expectedString[i], actualString);
+            i++;
+            listIter++;
         }
-        
+
     }
 
     TEST_METHOD(UIGetTaskStringType0) {
@@ -256,7 +264,7 @@ public:
             i++;
             displayListIter++;
         }
-        
+
     }
 
     TEST_METHOD(ViewType0CreateSearchList) {
