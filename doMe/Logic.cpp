@@ -1,5 +1,5 @@
 #include "Logic.h"
-
+/*
 const string Logic::EXIT_COMMAND = "exit"; 
 const string Logic::LIST_DIVIDER = "__________";
 
@@ -260,3 +260,4 @@ void Logic::transferBackSearchTasks() {
         _tempTaskList->pop_front();
     }
 }
+*/
